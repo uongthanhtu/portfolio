@@ -8,6 +8,42 @@
   </head>
   <body>
     <header class="site-header">
+      <div class="logo">
+        <a href="#hero" class="logo-link" aria-label="Go to top">
+          <!-- simple logomark + wordmark -->
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 100 100"
+            aria-hidden="true"
+            focusable="false">
+            <circle
+              cx="50"
+              cy="50"
+              r="48"
+              stroke="currentColor"
+              stroke-width="4"
+              fill="none" />
+            <text
+              x="50%"
+              y="55%"
+              text-anchor="middle"
+              font-family="system-ui,-apple-system,BlinkMacSystemFont,sans-serif"
+              font-weight="700"
+              font-size="50"
+              dy=".1em"
+              fill="currentColor">
+              T
+            </text>
+          </svg>
+          <span class="wordmark">Tusry</span>
+        </a>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
       <nav class="nav-container">
         <ul class="nav-list">
           <li><a href="#about">About Me</a></li>
@@ -21,18 +57,77 @@
     <!-- Hero -->
     <section class="hero" id="hero">
       <div id="particles-js"></div>
+      <div class="overlay"></div>
       <div class="hero-content">
-        <h1>Uong Thanh Tu</h1>
+        <h1>Uong Thanh Tu (Tusry Uong)</h1>
         <div class="subtitle">Backend Developer | Java Specialist</div>
         <div class="description">
-          Passionate about building scalable, secure APIs and microservice
-          architectures with high performance.
+          I’m a third-year student at FPT University and a Java backend engineer
+          who builds secure, scalable APIs using Domain-Driven Design and modern
+          data platform
         </div>
-        <a href="#about" class="cta-button">Learn More</a>
+        <div class="actions">
+          <div class="social-links" aria-label="Social links">
+            <a
+              href="https://github.com/uongthanhtu"
+              target="_blank"
+              rel="noopener"
+              class="social-button"
+              aria-label="GitHub">
+              <!-- GitHub SVG icon -->
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="currentColor">
+                <path
+                  d="M12 .5C5.65.5.5 5.66.5 12.02c0 5.11 3.29 9.45 7.86 10.98.57.1.78-.25.78-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.31-1.27-1.66-1.27-1.66-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.71 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .96-.31 3.14 1.18a10.9 10.9 0 0 1 2.86-.38c.97.01 1.95.13 2.86.38 2.18-1.49 3.14-1.18 3.14-1.18.62 1.59.23 2.77.11 3.06.74.81 1.18 1.84 1.18 3.1 0 4.44-2.69 5.41-5.25 5.7.41.35.77 1.04.77 2.1 0 1.52-.01 2.75-.01 3.12 0 .31.2.66.79.55 4.56-1.53 7.84-5.87 7.84-10.98C23.5 5.66 18.35.5 12 .5z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/uongthanhtu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-button"
+              aria-label="LinkedIn profile of Uong Thanh Tu"
+              title="LinkedIn: Tusry">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="currentColor"
+                role="img">
+                <path
+                  d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.24 8.5h4.52v12H.24v-12zm7.5 0h4.33v1.64h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3.01 5.4 6.92v7.78h-4.52v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.65 1.79-2.65 3.64v7.03H7.74v-12z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.facebook.com/tusry.uong"
+              target="_blank"
+              rel="noopener"
+              class="social-button"
+              aria-label="Facebook">
+              <!-- Facebook SVG icon -->
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="currentColor">
+                <path
+                  d="M13.5 2H10c-3.03 0-5.5 2.47-5.5 5.5v3H3v4h1.5v8h4v-8H12v-4H9.5v-2.5c0-1.1.9-2 2-2H13.5V2z" />
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
       <div
         class="scroll-indicator"
-        onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+        role="button"
+        tabindex="0"
+        aria-label="Scroll down to about">
         ↓ Scroll Down
       </div>
     </section>
@@ -42,25 +137,59 @@
       <section>
         <h2 class="section-title">About Me</h2>
         <p>
-          I am a Backend Developer experienced with Java, Spring Boot, and
-          microservice systems. I focus on clean, performant, and scalable code.
+          I'm Uong Thanh Tu, a third-year student at FPT University and a
+          backend engineer passionate about system design and domain modeling. I
+          build robust, secure, and scalable services primarily with Java and
+          Spring Boot. I’m learning and applying Domain-Driven Design (DDD) to
+          keep code aligned with business intent. My work emphasizes security
+          (OAuth2, JWT), performance, and observability, and I routinely design
+          systems that remain maintainable as they grow.
+        </p>
+        <p>
+          I also work with data platforms—relational and in-memory—namely MySQL,
+          SQL Server, and Redis, to support high-throughput, low-latency backend
+          workflows.
         </p>
 
-        <div class="skills-grid">
+        <div class="skills-list">
           <div class="skill-card">
-            <div class="skill-icon">⚡</div>
-            <h3>Performance</h3>
-            <p>Optimizing database and application performance</p>
+            <div class="skill-title">Java & Spring Boot</div>
+            <div class="skill-desc">
+              Building production-grade backend systems with Spring Boot,
+              dependency injection, Spring Security, and performance tuning.
+            </div>
           </div>
           <div class="skill-card">
-            <div class="skill-icon">🔒</div>
-            <h3>Security</h3>
-            <p>Implementing OAuth2, JWT, and secure coding practices</p>
+            <div class="skill-title">System Design & DDD</div>
+            <div class="skill-desc">
+              Architect scalable, maintainable services using Domain-Driven
+              Design: bounded contexts, aggregates, and ubiquitous language.
+            </div>
           </div>
+
           <div class="skill-card">
-            <div class="skill-icon">🛠️</div>
-            <h3>Architecture</h3>
-            <p>Designing scalable microservices</p>
+            <div class="skill-title">Databases</div>
+            <div class="skill-desc">
+              Working with MySQL, SQL Server for reliable relational storage and
+              Redis for fast in-memory caching / ephemeral state.
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">Security</div>
+            <div class="skill-desc">
+              Security-first development: OAuth2, JWT, threat modeling, and
+              secure coding practices.
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">Performance & Observability</div>
+            <div class="skill-desc">
+              Optimizing throughput and latency while adding visibility
+              (metrics, logging, tracing) to ensure reliability in distributed
+              systems.
+            </div>
           </div>
         </div>
       </section>
@@ -205,14 +334,114 @@
 
       <section id="certificates">
         <h2 class="section-title">Certificates</h2>
+        <p class="section-subtitle">
+          Specializations & Professional Certificates
+        </p>
+
         <div class="certificates-grid">
-          <div class="certificate-card">
-            <h3>Coursera - Java Programming</h3>
-            <p>Issued: 2023</p>
+          <!-- Amazon Junior Software Developer -->
+          <div
+            class="certificate-card"
+            data-full="path/to/Amazon-Junior-Software.png">
+            <div class="thumb">
+              <img
+                src="img/certificates/Amazon Junior Software.png"
+                alt="Certificate: Amazon Junior Software Developer"
+                loading="lazy" />
+            </div>
+            <div class="info">
+              <h3>Amazon Junior Software Developer</h3>
+              <div class="meta">Coursera · Mar 4, 2025</div>
+              <div class="actions">
+                <a
+                  href="https://coursera.org/share/8c9c4b7c232d642710b912a6bb3c487b"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-sm">
+                  View Certificate
+                </a>
+              </div>
+            </div>
           </div>
-          <div class="certificate-card">
-            <h3>Coursera - Microservices Architecture</h3>
-            <p>Issued: 2024</p>
+          <!-- Software Development Lifecycle -->
+          <div
+            class="certificate-card"
+            data-full="path/to/Software-Development-Lifecycle.png">
+            <div class="thumb">
+              <img
+                src="img/certificates/Software Development.png"
+                alt="Certificate: Software Development Lifecycle"
+                loading="lazy" />
+            </div>
+            <div class="info">
+              <h3>Software Development Lifecycle</h3>
+              <div class="meta">
+                Coursera / University of Michigan · Feb 12, 2025
+              </div>
+              <div class="actions">
+                <a
+                  href="https://coursera.org/share/4486e054dfe0b2d3d0d41960e02d5425"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-sm">
+                  View Certificate
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Experience Research and Design -->
+          <div
+            class="certificate-card"
+            data-full="path/to/User-Experience-Research.png">
+            <div class="thumb">
+              <img
+                src="img/certificates/User Experience Research.png"
+                alt="Certificate: User Experience Research and Design"
+                loading="lazy" />
+            </div>
+            <div class="info">
+              <h3>User Experience Research and Design</h3>
+              <div class="meta">
+                Coursera / University of Michigan · May 20, 2025
+              </div>
+              <div class="actions">
+                <a
+                  href="https://coursera.org/share/5b1e5e330930a2f29ba13416682c3cbb"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-sm">
+                  View Certificate
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Web Design for Everybody -->
+          <div class="certificate-card" data-full="path/to/Basics-of-Web.png">
+            <div class="thumb">
+              <img
+                src="img/certificates/Basics of Web.png"
+                alt="Certificate: Web Design for Everybody"
+                loading="lazy" />
+            </div>
+            <div class="info">
+              <h3>
+                Web Design for Everybody: Basics of Web Development & Coding
+              </h3>
+              <div class="meta">
+                Coursera / University of Michigan · Nov 27, 2024
+              </div>
+              <div class="actions">
+                <a
+                  href="https://coursera.org/share/f555036d9d1dfb6f8c015879514bfb3a"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn-sm">
+                  View Certificate
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -265,11 +494,26 @@
         </div>
       </div>
     </div>
+    <!-- Lightbox placeholder -->
+    <div
+      id="certificate-lightbox"
+      class="lightbox"
+      aria-hidden="true"
+      role="dialog">
+      <div class="lightbox-backdrop"></div>
+      <div class="lightbox-inner">
+        <button class="lightbox-close" aria-label="Close preview">
+          &times;
+        </button>
+        <img src="" alt="Certificate preview" />
+      </div>
+    </div>
 
-    <footer>© Uong Thanh Tu ❤️</footer>
+    <footer>© Uong Thanh Tu (Tusry Uong) ❤️</footer>
 
     <!-- tsParticles only for Hero -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <script src="particles.js"></script>
+    <script src="scripts.js"></script>
   </body>
 </html>
