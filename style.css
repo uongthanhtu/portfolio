@@ -448,21 +448,26 @@ a:hover {
 section {
   margin-bottom: 3rem;
 }
+
 .section-title {
+  text-align: center;
   font-size: 2.2rem;
   color: #2c3e50;
   margin-bottom: 1.5rem;
-  display: inline-block;
+  padding-bottom: 0.5rem;
   position: relative;
+  border-bottom: 3px solid #4caf50;
 }
+
 .section-title::after {
   content: "";
   position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 50px;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
   height: 4px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea, #764ba2);
   border-radius: 2px;
 }
 
@@ -694,30 +699,57 @@ section {
 
 /* Contact */
 .contact {
-  background: #2c3e50;
-  color: white;
-  text-align: center;
-  padding-bottom: 2rem;
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  color: #333;
 }
+
 .contact-info {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
+
 .contact-item {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1.5rem;
-  border-radius: 10px;
-  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: white;
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
+
 .contact-item:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-3px);
+  background-color: #e8f5e9;
 }
+
 .contact-icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  color: #4caf50;
+  flex-shrink: 0;
+}
+
+.contact-item h3 {
+  margin: 0;
+  font-weight: 600;
+  color: #4caf50;
+  min-width: 80px;
+}
+
+.contact-item a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
 }
 
 .site-header {
