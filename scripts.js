@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Lightbox cho ảnh achievement
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
 
@@ -7,31 +8,25 @@ document.addEventListener("DOMContentLoaded", () => {
       const full = img.dataset.full || img.src;
       lightboxImg.src = full;
       lightbox.style.display = "flex";
-      document.body.style.overflow = "hidden"; // prevent background scroll
+      document.body.style.overflow = "hidden";
+      lightbox.focus?.();
     });
   });
 
-  // close handlers
   function closeLightbox() {
     lightbox.style.display = "none";
     lightboxImg.src = "";
-    document.body.style.overflow = ""; // restore
+    document.body.style.overflow = "";
   }
 
-  // backdrop click
   document
     .querySelector(".lightbox-backdrop")
     ?.addEventListener("click", closeLightbox);
-  // close button
   document
     .querySelector(".lightbox-close")
     ?.addEventListener("click", closeLightbox);
-  // esc key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && lightbox.style.display === "flex") {
-      closeLightbox();
-    }
-  });
+
+  // Modal gallery mở ảnh toàn bộ năm
   const galleryModal = document.getElementById("gallery-modal");
   const galleryWrapper = galleryModal.querySelector(".gallery-images-wrapper");
   const galleryClose = galleryModal.querySelector(".gallery-close");
@@ -48,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     galleryModal.style.display = "flex";
     document.body.style.overflow = "hidden";
     galleryModal.setAttribute("aria-hidden", "false");
+    galleryClose.focus();
   }
   function closeGallery() {
     galleryModal.style.display = "none";
@@ -58,12 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   galleryClose?.addEventListener("click", closeGallery);
   galleryBackdrop?.addEventListener("click", closeGallery);
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && galleryModal.style.display === "flex") {
-      closeGallery();
-    }
-  });
 
+  // Mở gallery khi click nút Show All
   document.querySelectorAll(".year-achievement-card").forEach((card) => {
     const btn = card.querySelector(".gallery-all-button");
     if (!btn) return;
@@ -75,101 +67,113 @@ document.addEventListener("DOMContentLoaded", () => {
       openGallery(imgs);
     });
   });
-});
-document.addEventListener("DOMContentLoaded", function () {
-  const scrollTargets = document.querySelectorAll(
-    '[href="#about"], .scroll-indicator'
-  );
-  scrollTargets.forEach((el) => {
-    el.addEventListener("click", function (e) {
-      e.preventDefault();
-      const about = document.getElementById("about");
-      if (about) {
-        about.scrollIntoView({ behavior: "smooth" });
+
+  // Scroll smooth cho nút scroll indicator và link #about
+  document
+    .querySelectorAll('[href="#about"], .scroll-indicator')
+    .forEach((el) => {
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        const about = document.getElementById("about");
+        if (about) about.scrollIntoView({ behavior: "smooth" });
+      });
+      if (el.classList.contains("scroll-indicator")) {
+        el.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            const about = document.getElementById("about");
+            if (about) about.scrollIntoView({ behavior: "smooth" });
+          }
+        });
       }
     });
-    // keyboard accessibility for indicator
-    if (el.classList.contains("scroll-indicator")) {
-      el.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          const about = document.getElementById("about");
-          if (about) about.scrollIntoView({ behavior: "smooth" });
-        }
-      });
+
+  // Toggle menu mobile
+  const toggle = document.querySelector(".nav-toggle");
+  const navList = document.querySelector(".nav-list");
+
+  toggle?.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!expanded));
+    navList.classList.toggle("show");
+    if (!expanded) {
+      navList.querySelector("a")?.focus();
+    } else {
+      toggle.focus();
     }
   });
-});
-document.querySelectorAll('a[href^="mailto:"]').forEach((a) => {
-  a.addEventListener("click", (e) => {
-    console.log("mailto clicked", e);
-  });
-});
 
-const toggle = document.querySelector(".nav-toggle");
-const navList = document.querySelector(".nav-list");
-
-toggle?.addEventListener("click", (e) => {
-  const expanded = toggle.getAttribute("aria-expanded") === "true";
-  toggle.setAttribute("aria-expanded", String(!expanded));
-  navList.classList.toggle("show");
-});
-
-// Close when clicking outside
-document.addEventListener("click", (e) => {
-  if (!navList.contains(e.target) && !toggle.contains(e.target)) {
-    navList.classList.remove("show");
-    toggle.setAttribute("aria-expanded", "false");
-  }
-});
-
-// Optional: highlight active section link on scroll (simple)
-const links = document.querySelectorAll(".nav-list a");
-const sections = Array.from(links).map((l) =>
-  document.querySelector(l.getAttribute("href"))
-);
-window.addEventListener("scroll", () => {
-  const y = window.scrollY + 100;
-  sections.forEach((sec, i) => {
-    if (sec && y >= sec.offsetTop && y < sec.offsetTop + sec.offsetHeight) {
-      links.forEach((l) => l.classList.remove("active"));
-      links[i].classList.add("active");
+  // Đóng menu khi click ngoài
+  document.addEventListener("click", (e) => {
+    if (!navList.contains(e.target) && !toggle.contains(e.target)) {
+      navList.classList.remove("show");
+      toggle.setAttribute("aria-expanded", "false");
     }
   });
-});
 
-document.querySelectorAll(".certificate-card .preview-btn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const card = btn.closest(".certificate-card");
-    const src = card?.getAttribute("data-full");
-    if (!src) return;
-    const lightbox = document.getElementById("certificate-lightbox");
-    const img = lightbox.querySelector("img");
-    img.src = src;
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+  // Đóng menu khi nhấn ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (navList.classList.contains("show")) {
+        navList.classList.remove("show");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.focus();
+      }
+      if (lightbox.style.display === "flex") {
+        closeLightbox();
+      }
+      if (galleryModal.style.display === "flex") {
+        closeGallery();
+      }
+      // đóng certificate lightbox nếu mở
+      const certLightbox = document.getElementById("certificate-lightbox");
+      if (certLightbox?.getAttribute("aria-hidden") === "false") {
+        certLightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        certLightbox.querySelector("img").src = "";
+      }
+    }
   });
-});
 
-document
-  .querySelectorAll(".lightbox-close, .lightbox-backdrop")
-  .forEach((el) => {
-    el.addEventListener("click", () => {
-      const lightbox = document.getElementById("certificate-lightbox");
-      lightbox.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      lightbox.querySelector("img").src = "";
+  // Highlight nav links khi scroll
+  const links = document.querySelectorAll(".nav-list a");
+  const sections = Array.from(links).map((l) =>
+    document.querySelector(l.getAttribute("href"))
+  );
+  window.addEventListener("scroll", () => {
+    const y = window.scrollY + 100;
+    sections.forEach((sec, i) => {
+      if (sec && y >= sec.offsetTop && y < sec.offsetTop + sec.offsetHeight) {
+        links.forEach((l) => l.classList.remove("active"));
+        links[i].classList.add("active");
+      }
     });
   });
 
-// Close on ESC
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    const lightbox = document.getElementById("certificate-lightbox");
-    if (lightbox.getAttribute("aria-hidden") === "false") {
-      lightbox.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      lightbox.querySelector("img").src = "";
-    }
-  }
+  // Preview chứng chỉ trong lightbox riêng
+  document.querySelectorAll(".certificate-card .preview-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const card = btn.closest(".certificate-card");
+      const src = card?.getAttribute("data-full");
+      if (!src) return;
+      const lightbox = document.getElementById("certificate-lightbox");
+      const img = lightbox.querySelector("img");
+      img.src = src;
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      lightbox.querySelector(".lightbox-close")?.focus();
+    });
+  });
+
+  // Đóng lightbox chứng chỉ khi click close hoặc backdrop
+  document
+    .querySelectorAll(".lightbox-close, .lightbox-backdrop")
+    .forEach((el) => {
+      el.addEventListener("click", () => {
+        const lightbox = document.getElementById("certificate-lightbox");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        lightbox.querySelector("img").src = "";
+      });
+    });
 });

@@ -1030,16 +1030,16 @@ footer {
 /* Responsive */
 @media (max-width: 768px) {
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: 2rem; /* nhỏ lại chút cho vừa màn nhỏ */
   }
   .hero .subtitle {
-    font-size: 1.2rem;
+    font-size: 1rem; /* vừa phải */
   }
   .section-title {
-    font-size: 1.8rem;
+    font-size: 1.6rem; /* nhỏ hơn để vừa màn */
   }
   .container {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem; /* giảm padding */
   }
   a:hover {
     color: #ff4757;
@@ -1054,12 +1054,35 @@ footer {
     grid-template-columns: 1fr;
   }
   .skill-card {
-    padding: 0.9rem 1rem;
+    padding: 0.75rem 1rem;
   }
   .actions {
     flex-direction: column;
   }
+
+  /* Thêm mở rộng menu cho nav */
+  .nav-list {
+    position: absolute;
+    top: 60px; /* hơi cao lên, vừa nav-header */
+    right: 0.5rem;
+    background: rgba(15, 17, 26, 0.98);
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    display: none;
+    min-width: 160px;
+    backdrop-filter: blur(12px);
+    z-index: 150;
+  }
+  .nav-list.show {
+    display: flex;
+  }
+  .nav-toggle {
+    display: inline-flex;
+  }
 }
+
+/* Dưới 900px: gallery và nav */
 @media (max-width: 900px) {
   .gallery-images-wrapper {
     grid-template-columns: 1fr;
@@ -1074,8 +1097,8 @@ footer {
 
   .nav-list {
     position: absolute;
-    top: 100%;
-    right: 1rem;
+    top: 60px;
+    right: 0.5rem;
     flex-direction: column;
     background: rgba(15, 17, 26, 0.95);
     padding: 0.75rem 1rem;
@@ -1086,6 +1109,7 @@ footer {
     min-width: 180px;
     backdrop-filter: blur(10px);
     margin-top: 4px;
+    z-index: 150;
   }
 
   .nav-list.show {
